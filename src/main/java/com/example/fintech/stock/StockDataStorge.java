@@ -22,4 +22,7 @@ public class StockDataStorge {
 //        );
 //        return stocks;
 //    }
+//     Stock stock=new Stock("2024-12-01",0.1,0.1,0.1,0.1,0.1,1,"Neko")
+//    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+//    Date date=simpleDateFormat.parse(time);
 }

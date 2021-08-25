@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Stock implements Serializable {
+public class Index implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
+    //    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     @Column(name="date",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -23,16 +23,16 @@ public class Stock implements Serializable {
     private double low;
     @Column(name="close",nullable = false)
     private double close;
-    @Column(name="cname",nullable = false)
-    private String cname;
+    @Column(name="type",nullable = false)
+    private String type;
 
     @Column(name="adjclose",nullable = false)
     private double adjclose;
     @Column(name="volume",nullable = false)
     private Long volume;
 
-    public Stock(){}
-    public Stock(Date  date, double open, double high,double low,double close,double adjclose,Long volume,String cname){
+    public Index(){}
+    public Index(Date  date, double open, double high,double low,double close,double adjclose,Long volume,String type){
         this.date=date;
         this.open=open;
         this.high=high;
@@ -40,22 +40,8 @@ public class Stock implements Serializable {
         this.close=close;
         this.adjclose=adjclose;
         this.volume=volume;
-        this.cname=cname;
+        this.type=type;
     }
-
-//    public Stock(String  time, double open, double high,double low,double close,double adjclose,Long volume,String cname)throws ParseException {
-//        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-//        Date date=simpleDateFormat.parse(time);
-//        this.date=date;
-//        this.open=open;
-//        this.high=high;
-//        this.low=low;
-//        this.close=close;
-//        this.adjclose=adjclose;
-//        this.volume=volume;
-//        this.cname=cname;
-//    }
-
     public Long getId() {
         return id;
     }
@@ -64,11 +50,11 @@ public class Stock implements Serializable {
         this.id = id;
     }
 
-    public Date  getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date  date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -104,12 +90,12 @@ public class Stock implements Serializable {
         this.close = close;
     }
 
-    public String getCname() {
-        return cname;
+    public String getType() {
+        return type;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getAdjclose() {
@@ -128,18 +114,4 @@ public class Stock implements Serializable {
         this.volume = volume;
     }
 
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "id=" + id +
-                ", date=" + date +
-                ", open=" + open +
-                ", high=" + high +
-                ", low=" + low +
-                ", close=" + close +
-                ", cname='" + cname + '\'' +
-                ", adjclose=" + adjclose +
-                ", volume=" + volume +
-                '}';
-    }
 }

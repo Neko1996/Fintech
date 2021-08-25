@@ -20,20 +20,15 @@ public interface StockRepository extends JpaRepository<Stock,Long> {
     @Query(value ="SELECT * FROM stock e where year(e.date)=?1 order by close desc",nativeQuery=true)
     List<Stock> findByYear(String year);
 
-    @Query("SELECT e FROM Stock e ORDER BY e.close ASC")
-    List<Stock> findByVolumeOrder();
-
     @Query("SELECT e FROM Stock e where e.volume between ?1 and ?2")
     List<Stock> findWhereVolume(Long num1,Long num2);
 
-    @Query("SELECT e FROM Stock e  WHERE e.cname=?1 ORDER BY e.volume")
+    @Query("SELECT e FROM Stock e  WHERE e.cname=?1 ORDER BY e.date")
     List<Stock> findByName(String cname);
 
     @Query("SELECT e FROM Stock e  WHERE e.close <> e.adjclose")
     List<Stock> getCloseUnequllAdjclose();
 
-    @Query("SELECT e FROM Stock e where e.low=(SELECT MIN(low) FROM Stock )")
-    List<Stock> findLow();
-
-    
+//    @Query("SELECT e FROM Stock e where e.low=(SELECT MIN(low) FROM Stock )")
+//    List<Stock> findLow();
 }

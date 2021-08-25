@@ -9,7 +9,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 //@Transactional
@@ -17,36 +16,10 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    public List<Stock>  getStocks(){
-        List<Stock> list = stockRepository.findAll();
-        return list;
-    }
-
-    public Optional<Stock> getStock(Long id){
-        Optional<Stock> stock= stockRepository.findById(id);
-        return stock;
-    }
-
-    public List<Stock> getStockByVolumeOrder(){
-        List<Stock> stocks= stockRepository.findByVolumeOrder();
-        return stocks;
-    }
-
     public List<Stock> getByDate(String time) throws ParseException {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         Date date=simpleDateFormat.parse(time);
-//        List<Stock> stocks=stockRepository.findByDate(date);
-//        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        Date date = LocalDate.parse(time, fmt);
-//        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//        System.out.println(sqlDate.getClass()+" "+sqlDate);
-
         List<Stock> stocks=stockRepository.findByDate(date);
-//        System.out.println("==len=="+stocks.size());
-//        for(int i=0;i<stocks.size();i++){
-//            Stock temp=(Stock) stocks.get(i);
-//            System.out.println(temp.getDate()+" "+temp.getId());
-//        }
         return stocks;
     }
 
@@ -59,10 +32,10 @@ public class StockService {
         return stocks;
     }
 
-    public List<Stock> findWhereVolume(Long num1,Long num2){
-        List<Stock> stocks=stockRepository.findWhereVolume(num1,num2);
-        return stocks;
-    }
+//    public List<Stock> findWhereVolume(Long num1,Long num2){
+//        List<Stock> stocks=stockRepository.findWhereVolume(num1,num2);
+//        return stocks;
+//    }
 
     public List<Stock> findByYear(String year){
        List<Stock> stocks=stockRepository.findByYear(year);
@@ -79,10 +52,21 @@ public class StockService {
         return stocks;
     }
 
-    public List<Stock> findLow(){
-        List<Stock> stocks=stockRepository.findLow();
-        return stocks;
+    public void addStock(Stock stock){
+        stockRepository.save(stock);
     }
-
-
+    //    public List<Stock>  getStocks(){
+//        List<Stock> list = stockRepository.findAll();
+//        return list;
+//    }
+//
+//    public Optional<Stock> getStock(Long id){
+//        Optional<Stock> stock= stockRepository.findById(id);
+//        return stock;
+//    }
+//
+//    public List<Stock> getStockByVolumeOrder(){
+//        List<Stock> stocks= stockRepository.findByVolumeOrder();
+//        return stocks;
+//    }
 }

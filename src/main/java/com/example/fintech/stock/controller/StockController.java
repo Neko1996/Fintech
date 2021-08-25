@@ -3,13 +3,10 @@ package com.example.fintech.stock.controller;
 import com.example.fintech.stock.model.Stock;
 import com.example.fintech.stock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/API")
@@ -20,24 +17,6 @@ public class StockController {
     @Autowired
     public StockController(StockService stockService){this.stockService=stockService;}
 
-    @GetMapping(produces = "application/json;charset=UTF-8")
-    List<Stock> getStocks(){
-        return stockService.getStocks();
-    }
-
-    @GetMapping(value="/stocks/order",produces = "application/json;charset=UTF-8")
-    List<Stock> getStocksByOrder(){
-        return stockService.getStockByVolumeOrder();
-    }
-
-    @GetMapping(path="{id}")
-    public ResponseEntity<Stock> getStock(@PathVariable("id") Long id){
-        Optional<Stock> stock = stockService.getStock(id);
-        if(stock.isPresent()){
-            return new ResponseEntity<Stock>(stock.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<Stock>(new Stock(), HttpStatus.NOT_FOUND);
-    }
 
     @GetMapping(value="/stocks/date/{date}",produces = "application/json;charset=UTF-8")
     public List<Stock> getStockByDate(@PathVariable("date") String date) throws ParseException {
@@ -65,18 +44,25 @@ public class StockController {
         return stockService.getCloseUnequllAdjclose();
     }
 
-    @GetMapping(value="/stocks/minilow/",produces = "application/json;charset=UTF-8")
-    public List<Stock> getStockByMinLow(){
-        return stockService.findLow();
-    }
+//    @GetMapping(value="/stocks/minilow/",produces = "application/json;charset=UTF-8")
+//    public List<Stock> getStockByMinLow(){
+//        return stockService.findLow();
+//    }
 
 //    @PathVariable("numleft")
-    @GetMapping(value="/stocks/volume",produces = "application/json;charset=UTF-8")
-    public List<Stock> getStockByVolume(Long numleft, Long numright){
-        System.out.println("numleft:"+numleft);
-        System.out.println("numright:"+numright);
-        return stockService.findWhereVolume(numleft,numright);
+//    @GetMapping(value="/stocks/volume",produces = "application/json;charset=UTF-8")
+//    public List<Stock> getStockByVolume(Long numleft, Long numright){
+//        System.out.println("numleft:"+numleft);
+//        System.out.println("numright:"+numright);
+//        return stockService.findWhereVolume(numleft,numright);
+//    }
+
+    @PostMapping(value = "/Add")
+    public void addStock(@RequestBody Stock stock){
+        System.out.println(stock.toString());
+        stockService.addStock(stock);
     }
 
-    //public void addStock(@RequestBody Stock stock){stockService.addStock(stock);}
+
+
 }
