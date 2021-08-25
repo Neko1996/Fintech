@@ -44,4 +44,9 @@ public class IndexService {
         List<Index> indexs=indexRepository.findByDate(date);
         return indexs;
     }
+
+    public List<Index> getAdustedCloseLists(){
+        List<Index> indexs=indexRepository.getCloseUnequllAdjclose();
+        return indexs;
+    }
 }

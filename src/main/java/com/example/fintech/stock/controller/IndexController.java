@@ -37,4 +37,9 @@ public class IndexController {
     @GetMapping(value="/indexs/year/{year}",produces = "application/json;charset=UTF-8")
     public List<Index> getStockByYear(@PathVariable("year") String year){
         return indexService.findByYear(year);}
+
+    @GetMapping(value="/indexs/adjclose/",produces = "application/json;charset=UTF-8")
+    public List<Index> getStockDiffAdjclose(){
+        return indexService.getAdustedCloseLists();
+    }
 }

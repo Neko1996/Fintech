@@ -24,4 +24,7 @@ public interface IndexRepository extends JpaRepository<Index,Long> {
 
     @Query("SELECT e FROM Index e  WHERE e.type=?1 ORDER BY e.date")
     List<Index> findByName(String type);
+
+    @Query("SELECT e FROM Index e  WHERE e.close <> e.adjclose")
+    List<Index> getCloseUnequllAdjclose();
 }
