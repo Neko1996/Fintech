@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Index implements Serializable {
+public class IndexP implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -31,8 +31,8 @@ public class Index implements Serializable {
     @Column(name="volume",nullable = false)
     private Long volume;
 
-    public Index(){}
-    public Index(Date  date, double open, double high,double low,double close,double adjclose,Long volume,String type){
+    public IndexP(){}
+    public IndexP(Date  date, double open, double high, double low, double close, double adjclose, Long volume, String type){
         this.date=date;
         this.open=open;
         this.high=high;

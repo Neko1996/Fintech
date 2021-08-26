@@ -55,6 +55,7 @@ public class StockService {
     public void addStock(Stock stock){
         stockRepository.save(stock);
     }
+
     //    public List<Stock>  getStocks(){
 //        List<Stock> list = stockRepository.findAll();
 //        return list;

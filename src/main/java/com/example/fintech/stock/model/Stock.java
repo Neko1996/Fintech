@@ -142,4 +142,5 @@ public class Stock implements Serializable {
                 ", volume=" + volume +
                 '}';
     }
+
 }
