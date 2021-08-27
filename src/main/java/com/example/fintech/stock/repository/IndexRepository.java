@@ -1,6 +1,7 @@
 package com.example.fintech.stock.repository;
 
 import com.example.fintech.stock.model.IndexP;
+import com.example.fintech.stock.model.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,6 @@ public interface IndexRepository extends JpaRepository<IndexP,Long> {
     @Query("SELECT e FROM IndexP e  WHERE e.close <> e.adjclose")
     List<IndexP> getCloseUnequllAdjclose();
 
+    @Query(value = "SELECT * FROM indexp e where e.date>=?1 and e.date<=?2 and e.type=?3 limit 10",nativeQuery = true)
+    List<IndexP> findByDateIntervalsAndCname(Date date1, Date date2, String type);
 }

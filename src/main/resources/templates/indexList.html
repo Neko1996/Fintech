@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr th:each="index:${indexlist}">
+        <td th:text="${index.date}"></td>
+        <td th:text="${index.type}"></td>
+        <td th:text="${index.open}"></td>
+        <td th:text="${index.high}"></td>
+        <td th:text="${index.low}"></td>
+        <td th:text="${index.close}"></td>
+        <td th:text="${index.adjclose}"></td>
+        <td th:text="${index.volume}"></td>
+    </tr>
+</table>
+
+<form action="/API/ByConditionIndex" method="post">
+    <input type="text" name="time1"/>
+    <input type="text" name="time2"/>
+    <input type="text" name="type"/>
+    <button type="submit">Submit</button>
+</form>
+<a th:href="@{/API/index}">Back home</a>
+</body>
+</html>

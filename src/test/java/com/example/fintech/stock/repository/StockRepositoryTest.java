@@ -105,6 +105,7 @@ class StockRepositoryTest {
         }
     }
 
+
     @Test
     void findByYear() throws ParseException{
         Date date0 = simpleDateFormat.parse("2020-01-01");

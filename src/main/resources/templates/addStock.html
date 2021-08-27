@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    <p th:text="${stock}"></p>-->
+    <p th:text="${newstock}"></p>
+    <form action="/API/Add" method="post">
+        <input type="text" name="date" placeholder="date"/>
+        <input type="text" name="open" placeholder="open"/>
+        <input type="text" name="high" placeholder="high"/>
+        <input type="text" name="low" placeholder="low"/>
+        <input type="text" name="close" placeholder="close"/>
+        <input type="text" name="cname" placeholder="cname"/>
+        <input type="text" name="adjclose" placeholder="adjclose"/>
+        <input type="text" name="volume" placeholder="volume"/>
+        <button type="submit">Submit</button>
+    </form>
+    <a th:href="@{/API/index}">Back home</a>
+</body>
+</html>

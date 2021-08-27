@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+<tr th:each="stock:${defaultlist}">
+    <td th:text="${stock.date}"></td>
+    <td th:text="${stock.cname}"></td>
+    <td th:text="${stock.open}"></td>
+    <td th:text="${stock.high}"></td>
+    <td th:text="${stock.low}"></td>
+    <td th:text="${stock.close}"></td>
+    <td th:text="${stock.adjclose}"></td>
+    <td th:text="${stock.volume}"></td>
+</tr>
+</table>
+<form action="/API/ByCondition" method="post">
+    <input type="text" name="time1"/>
+    <input type="text" name="time2"/>
+    <input type="text" name="cname"/>
+    <button type="submit">Submit</button>
+</form>
+<a th:href="@{/API/index}">Back home</a>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.example.fintech.stock.controller;
 import com.example.fintech.stock.model.Stock;
 import com.example.fintech.stock.repository.StockRepository;
 import com.example.fintech.stock.service.StockService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,15 +38,12 @@ class StockControllerTest {
         Date date = simpleDateFormat.parse("2021-08-25");
         Stock stock0=new Stock(date,21.25,23.56,20.31,20.73,20.73,Long.valueOf(1200),"Today");
         stockRepository.save(stock0);
-//        List<Stock> indexs=stockRepository.findAll();
-//        latest_id=indexs.get(0).getId();
-//        System.out.println("latest_id_is:"+latest_id);
     }
 
-
-
-
-//    stocks.add(stock1);
+    @AfterEach
+    void delete_last_test_record(){
+        stockRepository.deleteById(latest_id);
+    }
 
     StockControllerTest() throws ParseException {
     }

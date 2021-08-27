@@ -49,4 +49,13 @@ public class IndexService {
         List<IndexP> indexPS =indexRepository.getCloseUnequllAdjclose();
         return indexPS;
     }
+
+    public List<IndexP> getByDateIntervalsType(String time1, String time2,String type) throws ParseException {
+//        System.out.println(time1+" "+time2);
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=simpleDateFormat.parse(time1);
+        Date date2=simpleDateFormat.parse(time2);
+        List<IndexP> indexPS =indexRepository.findByDateIntervalsAndCname(date1,date2,type);
+        return indexPS;
+    }
 }

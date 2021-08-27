@@ -56,18 +56,12 @@ public class StockService {
         stockRepository.save(stock);
     }
 
-    //    public List<Stock>  getStocks(){
-//        List<Stock> list = stockRepository.findAll();
-//        return list;
-//    }
-//
-//    public Optional<Stock> getStock(Long id){
-//        Optional<Stock> stock= stockRepository.findById(id);
-//        return stock;
-//    }
-//
-//    public List<Stock> getStockByVolumeOrder(){
-//        List<Stock> stocks= stockRepository.findByVolumeOrder();
-//        return stocks;
-//    }
+    public List<Stock> getByDateIntervalsAndCname(String time1,String time2,String cname) throws ParseException{
+        System.out.println(time1+" "+time2);
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=simpleDateFormat.parse(time1);
+        Date date2=simpleDateFormat.parse(time2);
+        List<Stock> stocks=stockRepository.findByDateIntervalsAndCname(date1,date2,cname);
+        return stocks;
+    }
 }
